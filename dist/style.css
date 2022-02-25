@@ -1,0 +1,17 @@
+/* Global Styles */
+:root {
+  --primary-color: #3f4241;
+  --primary-white-color: #FFF;
+  --primary-text-color: #333333;
+  --secondary-text-color: #757575;
+  --dark-background-color: #141414;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 10px;
+  line-height: 1.6;
+}
