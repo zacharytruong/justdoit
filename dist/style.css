@@ -1,6 +1,7 @@
 /* Global Styles */
 :root {
-  --primary-color: #3f4241;
+  --primary-color: #DC4C3F;
+  --secondary-color: #e7877e;
   --primary-white-color: #FFF;
   --primary-text-color: #333333;
   --secondary-text-color: #757575;
@@ -14,4 +15,68 @@
 html {
   font-size: 10px;
   line-height: 1.6;
+}
+h1,
+h2,
+h3 {
+  color: var(--primary-color);
+  font-family: 'Expletus Sans', cursive;
+}
+h1 {
+  font-size: 5rem;
+}
+h2 {
+  font-size: 3rem;
+}
+h3 {
+  font-size: 2rem;
+}
+p {
+  font-family: 'Hind', sans-serif;
+  font-size: 1.6rem;
+  color: var(--primary-text-color);
+}
+li {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  color: var(--primary-text-color);
+}
+.border {
+  border-bottom: .1rem solid var(--secondary-text-color);
+}
+/* Styling header */
+header {
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  min-height: 10vh;
+}
+.siteTitle {
+  color: var(--primary-white-color);
+  padding: 1rem 2rem;
+  letter-spacing: 1rem;
+}
+/* Styling main */
+main {
+  min-height: calc(100vh - 10vh - 10vh);
+}
+.projectHeader {
+  padding: 1rem;
+}
+
+/* Styling footer */
+footer {
+  background-color: var(--primary-color);
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.copyright {
+  color: var(--primary-white-color);
+}
+
+/* Mobile responsive */
+@media only screen and (min-width: 40rem) {
+
 }
