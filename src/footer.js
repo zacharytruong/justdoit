@@ -1,4 +1,4 @@
-const footer = function(author) {
+const createFooter = function(author) {
   const footer = document.createElement('footer');
   footer.classList.add('footer');
 
@@ -10,4 +10,4 @@ const footer = function(author) {
   return footer;
 };
 
-export default footer;
+export default createFooter;

@@ -1,4 +1,4 @@
-const header = function(siteTitle) {
+const createHeader = function(siteTitle) {
   const header = document.createElement('header');
   header.classList.add('header');
 
@@ -10,4 +10,4 @@ const header = function(siteTitle) {
   return header;
 };
 
-export default header;
+export default createHeader;
