@@ -2,8 +2,8 @@ const data = ( function() {
 
   const defaultProject = [];
   class todoItem {
-    constructor(project, description) {
-      this.project = project || 'defaultProject';
+    constructor(projectName, description) {
+      this.project = projectName || 'defaultProject';
       this.description = description;
     }
   }
