@@ -5,7 +5,7 @@ const createMain = function() {
 
   const main = document.createElement('main');
 
-  main.appendChild(createControlPanel());
+  main.appendChild(createControlPanel().controlPanel);
   main.appendChild(createDataPanel());
   
   

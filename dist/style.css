@@ -70,6 +70,15 @@ main {
 #controlPanel {
   background-color: var(--light-background-color);
 }
+.project {
+  cursor: pointer;
+}
+.project:hover {
+  opacity: .7;
+}
+.completed {
+  text-decoration: line-through;
+}
 /* Styling footer */
 footer {
   background-color: var(--primary-color);
