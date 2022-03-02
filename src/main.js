@@ -1,31 +1,35 @@
+import createDataPanel from "./dataPanel";
 
 const createMain = function() {
 
   const main = document.createElement('main');
   const controlPanel = createControlPanel();
+  main.appendChild(controlPanel);
+
+  // Create Inbox section
   const inbox = createInbox();
   const inboxTitle = createInboxTitle();
   inbox.appendChild(inboxTitle);
   controlPanel.appendChild(inbox);
-  main.appendChild(controlPanel);
+  
+  // Create Projects list section
+  const projects = createProjectsBlock();
+  const projectsTitle = createProjectsTitle();
+  const projectsList = createProjectsList();
+  projects.appendChild(projectsTitle);
+  projects.appendChild(projectsList);
+  controlPanel.appendChild(projects);
 
-  const dataPanel = createDataPanel();
-  // main.appendChild(createDataPanel());
   function createControlPanel() {
     const controlPanel = document.createElement('div');
     controlPanel.id = 'controlPanel';
     return controlPanel;
   };
-  function createDataPanel() {
-    const dataPanel = document.createElement('div');
-    dataPanel.id = 'dataPanel';
-    return dataPanel;
-  };
   function createInbox() {
     const inbox = document.createElement('div');
     inbox.classList.add('inbox');
     inbox.classList.add('border');
-    // inbox.addEventListener('click', createTodosBlock);
+    inbox.addEventListener('click', createDataPanel);
     return inbox;
   }
   function createInboxTitle() {
@@ -53,59 +57,19 @@ const createMain = function() {
     const lists = JSON.parse(localStorage.getItem('Inbox'));
     const listContainer = document.createElement('ul');
     lists.forEach( list => {
-      const el = document.createElement('li');
-      el.textContent = list[0]['project'];
-      el.classList.add('project');
-      el.id = el.textContent;
-      el.addEventListener('click', createTodosBlock);
-      listContainer.appendChild(el);
+      if (!list[0]) {
+        return;
+      } else {
+        const el = document.createElement('li');
+        el.textContent = list[0]['project'];
+        el.classList.add('project');
+        el.id = el.textContent;
+        el.addEventListener('click', createDataPanel);
+        listContainer.appendChild(el);
+      }
     })
     return listContainer;
   }
-  function setActiveProject(e) {
-    const projectsList = Array.from(document.getElementsByClassName('project'));
-    projectsList.forEach( project => {
-      project.classList.remove('active');
-      if (e.target.id === project.id) {
-        project.classList.add('active');
-      } else return;
-    })
-  };
-  function createTodosBlock(e) {
-    setActiveProject(e);
-    const todos = retrieveTodos(e);
-    const list = document.createElement('ul');
-    todos.forEach( todo => {
-      const listItem = document.createElement('li');
-      const span = document.createElement('span');
-      span.classList.add('checkbox');
-      span.addEventListener('click', (() => toggleCompleted(span)));
-      listItem.appendChild(span);
-      listItem.textContent = todo.description;
-      const description = listItem.textContent;
-      list.appendChild(listItem);
-    })
-    const dataPanel = document.createElement('div');
-    dataPanel.appendChild(list);
-    main.appendChild(dataPanel);
-  };
-  function retrieveTodos(e) {
-    const container = [];
-    const projects = JSON.parse(localStorage.getItem('Inbox'));
-    projects.forEach(project => {
-      if (e.target.id === 'Inbox') {
-        project.forEach( todo => {
-          container.push(todo);
-        })
-      } else return;
-    })
-    return container;
-  };
-  function toggleCompleted(node) {
-    node.classList.toggle('completed');
-  }
-  
-  
 
   return main;
 
