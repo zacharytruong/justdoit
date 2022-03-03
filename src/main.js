@@ -1,10 +1,12 @@
-import createDataPanel from "./dataPanel";
+import displayTodos from "./displayTodos";
 
 const createMain = function() {
 
   const main = document.createElement('main');
   const controlPanel = createControlPanel();
+  const dataPanel = createDataPanel();
   main.appendChild(controlPanel);
+  main.appendChild(dataPanel);
 
   // Create Inbox section
   const inbox = createInbox();
@@ -25,11 +27,16 @@ const createMain = function() {
     controlPanel.id = 'controlPanel';
     return controlPanel;
   };
+  function createDataPanel() {
+    const dataPanel = document.createElement('div');
+    dataPanel.id = 'dataPanel';
+    return dataPanel;
+  };
   function createInbox() {
     const inbox = document.createElement('div');
     inbox.classList.add('inbox');
     inbox.classList.add('border');
-    inbox.addEventListener('click', createDataPanel);
+    inbox.addEventListener('click', displayTodos);
     return inbox;
   }
   function createInboxTitle() {
@@ -53,7 +60,7 @@ const createMain = function() {
     projectsTitle.classList.add('border');
     return projectsTitle;
   }
-  function createProjectsList(node) {
+  function createProjectsList() {
     const lists = JSON.parse(localStorage.getItem('Inbox'));
     const listContainer = document.createElement('ul');
     lists.forEach( list => {
@@ -61,10 +68,10 @@ const createMain = function() {
         return;
       } else {
         const el = document.createElement('li');
-        el.textContent = list[0]['project'];
+        el.textContent = list[0]['projectName'];
         el.classList.add('project');
         el.id = el.textContent;
-        el.addEventListener('click', createDataPanel);
+        el.addEventListener('click', displayTodos);
         listContainer.appendChild(el);
       }
     })

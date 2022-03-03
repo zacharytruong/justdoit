@@ -4,14 +4,14 @@ const data = ( function() {
   const moving = [];
   class todoItem {
     constructor(projectName, description) {
-      this.project = projectName || 'myProject';
+      this.projectName = projectName || 'myProject';
       this.description = description;
     }
   }
   const todo1 = new todoItem('My Project', 'A sample todo list.');
-  const todo2 = new todoItem('My Project', 'A sample todo list.');
-  const todo3 = new todoItem('My Project', 'A sample todo list.');
-  const todo4 = new todoItem('Moving', 'A sample todo list.');
+  const todo2 = new todoItem('My Project', 'A todo list.');
+  const todo3 = new todoItem('My Project', 'A sample todo.');
+  const todo4 = new todoItem('Moving', 'Sample todo list.');
   myProject.push(todo1);
   myProject.push(todo2);
   myProject.push(todo3);
