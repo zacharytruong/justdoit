@@ -46,7 +46,8 @@ const showTodos = (function() {
   }
   return {
     displayTodos, 
-    createInboxTodos
+    createInboxTodos,
+    createProjectTodos
   }
 })();
 
