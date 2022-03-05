@@ -45,6 +45,36 @@ li {
 .border {
   border-bottom: .1rem solid var(--secondary-text-color);
 }
+button {
+  border-radius: 1rem;
+  padding: 1rem 3rem;
+  border: .1rem solid var(--primary-color);
+  background-color: transparent;
+}
+button:hover {
+  color: var(--primary-white-color);
+  cursor: pointer;
+  border: .1rem solid transparent;
+  background-color: var(--primary-color);
+}
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 /* Styling header */
 header {
   background-color: var(--primary-color);
@@ -100,16 +130,37 @@ main {
   z-index: 10;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(#000, #000, #000, .3); */
+  background-color: rgba(0, 0, 0, .7);
 }
-/* .modal {
-  
-} */
+.modal {
+  padding: 2rem;
+  background: rgba( 255, 255, 255, 1 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 10px );
+  -webkit-backdrop-filter: blur( 10px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  width: 90%;
+}
+.alert {
+  padding: 1rem;
+}
+.actions {
+  display: flex;
+  justify-content: space-around;
+}
+.cancel {
+  border: .1rem solid #33cc33;
+}
+.cancel:hover {
+  border: transparent;
+  background-color: #33cc33;
+}
 /* Styling footer */
 footer {
   background-color: var(--primary-color);
