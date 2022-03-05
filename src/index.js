@@ -1,9 +1,10 @@
 import createHeader from "./header";
 import createMain from "./main";
+import showTodos from "./showTodos";
 import createFooter from "./footer";
 import data from "./data";
 
-const todoApp = ( function() {
+( function todoApp() {
   
   const content = document.getElementById('content');
 
@@ -12,6 +13,7 @@ const todoApp = ( function() {
   function _init() {
     content.appendChild(createHeader('JustDoIt'));
     content.appendChild(createMain());
+    dataPanel.appendChild(showTodos.createInboxTodos());
     content.appendChild(createFooter('Zachary Truong'));
   }
 

@@ -1,28 +1,39 @@
 const data = ( function() {
 
-  const myProject = [];
-  const moving = [];
-  class todoItem {
-    constructor(projectName, description) {
-      this.projectName = projectName || 'myProject';
-      this.description = description;
+  const allProjects = [];
+  class Project {
+    constructor(name, todos) {
+      this.name = name;
+      this.todos = todos;
     }
   }
-  const todo1 = new todoItem('My Project', 'A sample todo list.');
-  const todo2 = new todoItem('My Project', 'A todo list.');
-  const todo3 = new todoItem('My Project', 'A sample todo.');
-  const todo4 = new todoItem('Moving', 'Sample todo list.');
-  myProject.push(todo1);
-  myProject.push(todo2);
-  myProject.push(todo3);
-  moving.push(todo4);
-  const Inbox = [];
-  Inbox.push(myProject);
-  Inbox.push(moving);
+  class todo {
+    constructor(content) {
+      this.content = content;
+    }
+  }
+  const cleaning = new Project('Cleaning', []);
+  const laundry = new Project('Laundry', []);
+  const shopping = new Project('Shopping', []);
+  allProjects.push(cleaning);
+  allProjects.push(laundry);
+  allProjects.push(shopping);
+
+  const sweeping = new todo('Sweeping the floor.');
+  const vacuum = new todo('Vacuuming the floor.');
+  const washing = new todo('Washing the filter.');
+  const necklace = new todo('Buy new necklace.');
+  const wash = new todo('Put clothes in washer machine.');
+  const dry = new todo('Put clothes in dryer.');
+  cleaning.todos.push(sweeping);
+  cleaning.todos.push(vacuum);
+  cleaning.todos.push(washing);
+  laundry.todos.push(wash);
+  laundry.todos.push(dry);
+  shopping.todos.push(necklace);
 
   if (storageAvailable('localStorage')) {
-    localStorage.setItem('myProject', JSON.stringify(myProject));
-    localStorage.setItem('Inbox', JSON.stringify(Inbox));
+    localStorage.setItem('allProjects', JSON.stringify(allProjects));
   }
   else return;
 

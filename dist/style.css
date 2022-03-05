@@ -83,6 +83,18 @@ main {
   padding: 2rem;
   list-style: none;
 }
+.listContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.fa-circle-minus {
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+.fa-circle-minus:hover {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
 /* Styling footer */
 footer {
   background-color: var(--primary-color);
