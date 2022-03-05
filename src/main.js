@@ -75,6 +75,7 @@ const createMain = function() {
       const deleteProjectBtn = document.createElement('i');
       deleteProjectBtn.classList.add('fa-solid');
       deleteProjectBtn.classList.add('fa-circle-minus');
+      deleteProjectBtn.addEventListener('click', deleteProject.deleteProject);
       projectsContainer.appendChild(list);
       list.appendChild(content);
       list.appendChild(deleteProjectBtn);
