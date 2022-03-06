@@ -199,10 +199,12 @@ main {
   border-bottom: .1rem solid var(--secondary-text-color);
   outline: none;
 }
-.submit:hover {
-  cursor: pointer;
-  background-color: var(--primary-text-color);
-  color: var(--light-background-color);
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+.submit {
+  margin: 1rem auto;
 }
 /* Styling footer */
 footer {
