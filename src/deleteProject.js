@@ -40,7 +40,12 @@ const deleteProject = ( function() {
     return agree;
   }
   function cancelBtnAction(e) {
-    (removePopUp.bind(this))();
+    this.closest('.modalContainer').classList.remove('fadeIn');
+    this.closest('.modalContainer').classList.add('fadeOut');
+    // (removePopUp.bind(this))();
+    this.closest('.modalContainer').addEventListener('transitionend', () => {
+      (removePopUp.bind(this))();
+    })
   }
   function agreeBtnAction(e) {
     const allProjects = retrieveLocalStorage('allProjects');
