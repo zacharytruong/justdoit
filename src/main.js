@@ -1,5 +1,6 @@
 import showTodos from "./showTodos";
 import deleteProject from "./deleteProject";
+import addProject from './addProject.js';
 
 const createMain = function() {
 
@@ -86,6 +87,7 @@ const createMain = function() {
     const btn = document.createElement('button');
     btn.textContent = 'NEW PROJECT';
     btn.classList.add('newProjectBtn');
+    btn.addEventListener('click', addProject.addProject);
     div.appendChild(btn);
     return div;
   }
