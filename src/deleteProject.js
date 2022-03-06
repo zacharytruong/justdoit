@@ -42,8 +42,7 @@ const deleteProject = ( function() {
   function cancelBtnAction(e) {
     this.closest('.modalContainer').classList.remove('fadeIn');
     this.closest('.modalContainer').classList.add('fadeOut');
-    // (removePopUp.bind(this))();
-    this.closest('.modalContainer').addEventListener('transitionend', () => {
+    this.closest('.modalContainer').addEventListener('animationend', () => {
       (removePopUp.bind(this))();
     })
   }
