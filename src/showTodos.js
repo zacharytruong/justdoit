@@ -14,12 +14,12 @@ const showTodos = (function() {
     setActiveProject(e);
     clear(dataPanel);
     if (e.target.id === 'Inbox') {
-      dataPanel.appendChild(createInboxTodos(e));
+      dataPanel.appendChild(createInboxTodos());
     } else {
       dataPanel.appendChild(createProjectTodos(e));
     }
   };
-  function createInboxTodos(e) {
+  function createInboxTodos() {
     const allProjects = JSON.parse(localStorage.getItem('allProjects'));
     const dataBlock = document.createElement('ul');
     dataBlock.classList.add('todos');

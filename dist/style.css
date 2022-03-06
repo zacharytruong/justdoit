@@ -173,6 +173,10 @@ main {
   border: transparent;
   background-color: #33cc33;
 }
+.newProjectContainer {
+  padding: 2rem 1rem;
+  text-align: right;
+}
 /* Styling footer */
 footer {
   background-color: var(--primary-color);

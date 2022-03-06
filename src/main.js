@@ -10,15 +10,13 @@ const createMain = function() {
   main.appendChild(dataPanel);
 
   const inbox = createInbox();
-  const inboxTitle = createInboxTitle();
-  inbox.appendChild(inboxTitle);
+  inbox.appendChild(createInboxTitle());
   controlPanel.appendChild(inbox);
   
   const projectsBlock = createProjectsBlock();
-  const projectsTitle = createProjectsTitle();
-  const allProjects = createProjectsList();
-  projectsBlock.appendChild(projectsTitle);
-  projectsBlock.appendChild(allProjects);
+  projectsBlock.appendChild(createProjectsTitle());
+  projectsBlock.appendChild(createProjectsList());
+  projectsBlock.appendChild(createNewProjectBtn());
 
   controlPanel.appendChild(projectsBlock);
 
@@ -79,11 +77,18 @@ const createMain = function() {
       projectsContainer.appendChild(list);
       list.appendChild(content);
       list.appendChild(deleteProjectBtn);
-      
     });
     return projectsContainer;
   }
-
+  function createNewProjectBtn() {
+    const div = document.createElement('div');
+    div.classList.add('newProjectContainer');
+    const btn = document.createElement('button');
+    btn.textContent = 'NEW PROJECT';
+    btn.classList.add('newProjectBtn');
+    div.appendChild(btn);
+    return div;
+  }
   return main;
 
 };

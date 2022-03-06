@@ -1,5 +1,4 @@
 import showTodos from "./showTodos";
-
 const deleteProject = ( function() {
   function createPopup() {
     const container = document.createElement('div');
@@ -40,24 +39,27 @@ const deleteProject = ( function() {
     return agree;
   }
   function cancelBtnAction(e) {
-    this.closest('.modalContainer').classList.remove('fadeIn');
-    this.closest('.modalContainer').classList.add('fadeOut');
-    this.closest('.modalContainer').addEventListener('animationend', () => {
-      (removePopUp.bind(this))();
+    const modalContainer = this.closest('.modalContainer')
+    modalContainer.classList.remove('fadeIn');
+    modalContainer.classList.add('fadeOut');
+    modalContainer.addEventListener('animationend', () => {
+      modalContainer.remove();
     })
   }
   function agreeBtnAction(e) {
     const allProjects = retrieveLocalStorage('allProjects');
     const parent = this.closest('.listContainer');
+    const projectsDiv = this.closest('.projects');
+    const projectsContainer = this.closest('.projectsContainer');
     const targetIndex = allProjects.findIndex( project => project.name === parent.firstChild.id);
     allProjects.splice(targetIndex, 1);
     updateLocalStorage(allProjects);
-    
-    (removePopUp.bind(this))();
-  }
-  function removePopUp(e) {
-    const parent = this.closest('.listContainer');
-    parent.removeChild(parent.lastChild);
+    setActive('Inbox');
+    clear(dataPanel);
+    projectsContainer.remove();
+    projectsDiv.appendChild(createProjectsList());
+    dataPanel.appendChild(showTodos.createInboxTodos());
+    (cancelBtnAction.bind(this))();
   }
   function deleteProject(e) {
     this.parentElement.appendChild(createPopup());
@@ -67,6 +69,40 @@ const deleteProject = ( function() {
   }
   function retrieveLocalStorage(data) {
     return JSON.parse(localStorage.getItem(data));
+  }
+  function setActive(id) {
+    const allProjects = Array.from(document.getElementsByClassName('project'));
+    const target = document.getElementById(id);
+    allProjects.forEach( project => {
+      project.classList.remove('active');
+    });
+    target.classList.add('active');
+  };
+  function clear(node) {
+    return node.innerHTML = '';
+  }
+  function createProjectsList() {
+    const allProjects = JSON.parse(localStorage.getItem('allProjects'));
+    const projectsContainer = document.createElement('ul');
+    projectsContainer.classList.add('projectsContainer');
+    allProjects.forEach( project => {
+      const list = document.createElement('li');
+      list.classList.add('listContainer');
+      const content = document.createElement('span');
+      content.textContent = project['name'];
+      content.classList.add('project');
+      content.id = project.name;
+      content.addEventListener('click', showTodos.displayTodos);
+      const deleteProjectBtn = document.createElement('i');
+      deleteProjectBtn.classList.add('fa-solid');
+      deleteProjectBtn.classList.add('fa-circle-minus');
+      deleteProjectBtn.addEventListener('click', deleteProject);
+      projectsContainer.appendChild(list);
+      list.appendChild(content);
+      list.appendChild(deleteProjectBtn);
+      
+    });
+    return projectsContainer;
   }
   return {
     deleteProject,
