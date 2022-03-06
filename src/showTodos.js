@@ -38,6 +38,8 @@ const showTodos = (function() {
     dataBlock.classList.add('todos');
     const target = allProjects.find( project => project['name'] === e.target.id);
     target.todos.forEach( todo => {
+      const icon = document.createElement('i');
+      icon.classList.add('fa-thin');
       const list = document.createElement('li');
       list.textContent = todo.content;
       dataBlock.appendChild(list);
