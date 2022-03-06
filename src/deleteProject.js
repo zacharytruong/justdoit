@@ -57,7 +57,7 @@ const deleteProject = ( function() {
     setActive('Inbox');
     clear(dataPanel);
     projectsContainer.remove();
-    projectsDiv.appendChild(createProjectsList());
+    projectsDiv.insertBefore(createProjectsList(), projectsDiv.lastChild);
     dataPanel.appendChild(showTodos.createInboxTodos());
     (cancelBtnAction.bind(this))();
   }
@@ -100,12 +100,12 @@ const deleteProject = ( function() {
       projectsContainer.appendChild(list);
       list.appendChild(content);
       list.appendChild(deleteProjectBtn);
-      
     });
     return projectsContainer;
   }
   return {
     deleteProject,
+    createProjectsList,
   }
 })();
 

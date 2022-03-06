@@ -2,9 +2,9 @@ const data = ( function() {
 
   const allProjects = [];
   class Project {
-    constructor(name, todos) {
+    constructor(name) {
       this.name = name;
-      this.todos = todos;
+      this.todos = [];
     }
   }
   class todo {
@@ -12,9 +12,9 @@ const data = ( function() {
       this.content = content;
     }
   }
-  const cleaning = new Project('Cleaning', []);
-  const laundry = new Project('Laundry', []);
-  const shopping = new Project('Shopping', []);
+  const cleaning = new Project('Cleaning');
+  const laundry = new Project('Laundry');
+  const shopping = new Project('Shopping');
   allProjects.push(cleaning);
   allProjects.push(laundry);
   allProjects.push(shopping);
@@ -62,4 +62,10 @@ const data = ( function() {
         }
     }
 
+  return {
+    Project,
+    todo,
+  }
 })();
+
+export default data;
