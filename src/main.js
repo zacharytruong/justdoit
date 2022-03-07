@@ -21,6 +21,8 @@ const createMain = function() {
 
   controlPanel.appendChild(projectsBlock);
 
+  dataPanel.appendChild(showTodos.createInboxTodos());
+  
   function createControlPanel() {
     const controlPanel = document.createElement('div');
     controlPanel.id = 'controlPanel';

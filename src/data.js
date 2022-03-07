@@ -1,6 +1,7 @@
 const data = ( function() {
 
   const allProjects = [];
+
   class Project {
     constructor(name) {
       this.name = name;
@@ -12,31 +13,33 @@ const data = ( function() {
       this.content = content;
     }
   }
-  const cleaning = new Project('Cleaning');
-  const laundry = new Project('Laundry');
-  const shopping = new Project('Shopping');
-  allProjects.push(cleaning);
-  allProjects.push(laundry);
-  allProjects.push(shopping);
-
-  const sweeping = new todo('Sweeping the floor.');
-  const vacuum = new todo('Vacuuming the floor.');
-  const washing = new todo('Washing the filter.');
-  const necklace = new todo('Buy new necklace.');
-  const wash = new todo('Put clothes in washer machine.');
-  const dry = new todo('Put clothes in dryer.');
-  cleaning.todos.push(sweeping);
-  cleaning.todos.push(vacuum);
-  cleaning.todos.push(washing);
-  laundry.todos.push(wash);
-  laundry.todos.push(dry);
-  shopping.todos.push(necklace);
-
-  if (storageAvailable('localStorage')) {
-    localStorage.setItem('allProjects', JSON.stringify(allProjects));
+  
+  function createDemoData() {
+    const cleaning = new Project('Cleaning');
+    const laundry = new Project('Laundry');
+    const shopping = new Project('Shopping');
+    allProjects.push(cleaning);
+    allProjects.push(laundry);
+    allProjects.push(shopping);
+  
+    const sweeping = new todo('Sweeping the floor.');
+    const vacuum = new todo('Vacuuming the floor.');
+    const washing = new todo('Washing the filter.');
+    const necklace = new todo('Buy new necklace.');
+    const wash = new todo('Put clothes in washer machine.');
+    const dry = new todo('Put clothes in dryer.');
+    cleaning.todos.push(sweeping);
+    cleaning.todos.push(vacuum);
+    cleaning.todos.push(washing);
+    laundry.todos.push(wash);
+    laundry.todos.push(dry);
+    shopping.todos.push(necklace);
+  
+    if (storageAvailable('localStorage')) {
+      localStorage.setItem('allProjects', JSON.stringify(allProjects));
+    }
+    else return;
   }
-  else return;
-
   function storageAvailable(type) {
     var storage;
     try {
@@ -65,6 +68,7 @@ const data = ( function() {
   return {
     Project,
     todo,
+    createDemoData,
   }
 })();
 

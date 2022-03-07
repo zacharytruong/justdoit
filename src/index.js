@@ -1,6 +1,5 @@
 import createHeader from "./header";
 import createMain from "./main";
-import showTodos from "./showTodos";
 import createFooter from "./footer";
 import data from "./data";
 
@@ -11,9 +10,9 @@ import data from "./data";
   _init();
 
   function _init() {
+    data.createDemoData();
     content.appendChild(createHeader('JustDoIt'));
     content.appendChild(createMain());
-    dataPanel.appendChild(showTodos.createInboxTodos());
     content.appendChild(createFooter('Zachary Truong'));
   }
 

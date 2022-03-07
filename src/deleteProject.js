@@ -1,4 +1,3 @@
-import showTodos from "./showTodos";
 const deleteProject = ( function() {
   function createPopup() {
     const container = document.createElement('div');
@@ -58,7 +57,7 @@ const deleteProject = ( function() {
     clear(dataPanel);
     projectsContainer.remove();
     projectsDiv.insertBefore(createProjectsList(), projectsDiv.lastChild);
-    dataPanel.appendChild(showTodos.createInboxTodos());
+    dataPanel.appendChild(createInboxTodos());
     (cancelBtnAction.bind(this))();
   }
   function deleteProject(e) {
@@ -92,7 +91,7 @@ const deleteProject = ( function() {
       content.textContent = project['name'];
       content.classList.add('project');
       content.id = project.name;
-      content.addEventListener('click', showTodos.displayTodos);
+      content.addEventListener('click', displayTodos);
       const deleteProjectBtn = document.createElement('i');
       deleteProjectBtn.classList.add('fa-solid');
       deleteProjectBtn.classList.add('fa-circle-minus');
@@ -103,8 +102,63 @@ const deleteProject = ( function() {
     });
     return projectsContainer;
   }
+  function createInboxTodos() {
+    const allProjects = JSON.parse(localStorage.getItem('allProjects'));
+    const dataBlock = document.createElement('ul');
+    dataBlock.classList.add('todos');
+    allProjects.forEach( project => {
+      project.todos.forEach( todo => {
+        const list = document.createElement('li');
+        list.textContent = todo.content;
+        dataBlock.appendChild(list);
+      })
+    })
+    return dataBlock
+  }
+  function setActiveProject(e) {
+    const allProjects = Array.from(document.getElementsByClassName('project'));
+    const target = document.getElementById(`${e.target.id}`);
+    allProjects.forEach( project => {
+      project.classList.remove('active');
+    });
+    target.classList.add('active');
+  };
+  function createProjectTodos(e) {
+    const allProjects = JSON.parse(localStorage.getItem('allProjects'));
+    const dataBlock = document.createElement('ul');
+    dataBlock.classList.add('todos');
+    const target = allProjects.find( project => project['name'] === e.target.id);
+    target.todos.forEach( todo => {
+      const icon = document.createElement('i');
+      icon.classList.add('fa-thin');
+      const list = document.createElement('li');
+      list.textContent = todo.content;
+      dataBlock.appendChild(list);
+    })
+    return dataBlock;
+  }
+  function displayTodos(e) {
+    setActiveProject(e);
+    clear(dataPanel);
+    if (e.target.id === 'Inbox') {
+      dataPanel.appendChild(createInboxTodos());
+    } else {
+      dataPanel.appendChild(createProjectTodos(e));
+    }
+  };
   return {
     deleteProject,
+    retrieveLocalStorage,
+    updateLocalStorage,
+    clear,
+    setActive,
+    createActions,
+    createAgreeBtn,
+    createCancelBtn,
+    createInboxTodos,
+    createNotificationText,
+    createPopup,
+    createProjectTodos,
     createProjectsList,
   }
 })();
