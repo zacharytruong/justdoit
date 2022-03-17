@@ -36,6 +36,7 @@ p {
   font-family: 'Hind', sans-serif;
   font-size: 1.6rem;
   color: var(--primary-text-color);
+  padding: 1rem 2rem;
 }
 li {
   padding: 1rem 2rem;
@@ -129,8 +130,16 @@ main {
   text-decoration: line-through;
 }
 .todos {
-  padding: 2rem;
   list-style: none;
+}
+.todos > li {
+  font-size: 2rem;
+}
+.todoContent {
+  padding-left: 1rem;
+}
+.crossed {
+  text-decoration: line-through;
 }
 .listContainer {
   display: flex;
@@ -166,6 +175,7 @@ main {
   border-radius: 10px;
   border: 1px solid rgba( 255, 255, 255, 0.18 );
   width: 90%;
+  max-width: 40rem;
 }
 .alert {
   padding: 1rem;
@@ -195,7 +205,8 @@ main {
   font-size: 2rem;
   color: var(--secondary-text-color);
 }
-#newProjectName {
+#newProjectName,
+#newTodoContent {
   border-bottom: .1rem solid var(--secondary-text-color);
   outline: none;
 }
@@ -205,6 +216,17 @@ main {
 }
 .submit {
   margin: 1rem auto;
+}
+.fa-square:hover,
+.fa-square-check:hover {
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+.addTodoContainer {
+  padding: 1rem 2rem;
+}
+.todo > .fa-circle-minus {
+  float: right;
 }
 /* Styling footer */
 footer {
